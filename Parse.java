@@ -15,29 +15,9 @@ public class Parse {
 
     private final static String API_KEY = getAPIKeyFromPython();
 
-    private static Map<String, String> countryCodes = new HashMap<String, String>(
+    private static Map<String, String> stockCodes = new HashMap<String, String>(
         Map.ofEntries(
-            Map.entry("United States", "US"),
-            Map.entry("Canada", "CA"),
-            Map.entry("United Kingdom", "GB"),
-            Map.entry("Germany", "DE"),
-            Map.entry("France", "FR"),
-            Map.entry("Japan", "JP"),
-            Map.entry("Australia", "AU"),
-            Map.entry("India", "IN"),
-            Map.entry("China", "CN"),
-            Map.entry("Brazil", "BR"),
-            Map.entry("Russia", "RU"),
-            Map.entry("South Korea", "KR"),
-            Map.entry("Italy", "IT"),
-            Map.entry("Spain", "ES"),
-            Map.entry("Netherlands", "NL"),
-            Map.entry("Switzerland", "CH"),
-            Map.entry("Sweden", "SE"),
-            Map.entry("Norway", "NO"),
-            Map.entry("Finland", "FI"),
-            Map.entry("Denmark", "DK"),
-            Map.entry("Belgium", "BE")
+            Map.entry("Apple", "AAPL")
         )
     );
 
@@ -65,10 +45,11 @@ public class Parse {
         return apiKey;
     }
 
-    public static String buildUrlResponse (String countryAcronym) {
+    public static String buildUrlResponse (String stockCode) {
         String queryParameters = "&token=" + getApiKey();
-        String endPoint = "stock/market-status?exchange=" + countryAcronym; // get endpoint
+        String endPoint = "quote?symbol=" + stockCode; // get endpoint
         String url = "https://finnhub.io/api/v1/" + endPoint + queryParameters;
+        System.out.println(url);
         try {
             URI myUri = URI.create(url); // creates a URI object from the url string
             HttpRequest request = HttpRequest.newBuilder().uri(myUri).build();
@@ -81,11 +62,11 @@ public class Parse {
         return null;
     }
 
-    public static ArrayList<Stock> parseResponseData (String country) {
-        String countryCode = countryCodes.get(country);
-        String responseBody = buildUrlResponse(countryCode);
+    public static void parseResponseData (String stockName) {
+        String stockCode = stockCodes.get(stockName);
+        String responseBody = buildUrlResponse(stockCode);
         JSONObject jsonObj = new JSONObject(responseBody);
-        return 0;
+        System.out.println(responseBody);
     }
 
 }
