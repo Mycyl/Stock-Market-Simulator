@@ -17,7 +17,8 @@ public class Parse {
 
     private static Map<String, String> stockCodes = new HashMap<String, String>(
         Map.ofEntries(
-            Map.entry("Apple", "AAPL")
+            Map.entry("Apple", "AAPL"),
+            Map.entry("NVIDIA", "NVDA") // add onto this
         )
     );
 
@@ -62,11 +63,18 @@ public class Parse {
         return null;
     }
 
-    public static void parseResponseData (String stockName) {
+    public static double[] parseResponseData (String stockName) {
         String stockCode = stockCodes.get(stockName);
         String responseBody = buildUrlResponse(stockCode);
         JSONObject jsonObj = new JSONObject(responseBody);
-        System.out.println(responseBody);
+        double c = jsonObj.getDouble("c");
+        double d = jsonObj.getDouble("d");
+        double dp = jsonObj.getDouble("dp");
+        double h = jsonObj.getDouble("h");
+        double l = jsonObj.getDouble("l");
+        double o = jsonObj.getDouble("o");
+        double pc = jsonObj.getDouble("pc");
+        return new double[] {c, d, dp, h, l, o, pc};
     }
 
 }
