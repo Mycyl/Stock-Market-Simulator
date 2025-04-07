@@ -46,7 +46,7 @@ public class Logic {
 
             } else if (response.equals("5")){
 
-                
+                person.viewEntirePortfolio();
 
             }else {
                 System.out.println("Invalid choice. Please try again.");

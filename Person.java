@@ -76,4 +76,24 @@ public class Person {
         realEstatePortfolio.add(realEstate);
     }
 
+    public void viewEntirePortfolio () {
+
+        if (stocks.isEmpty() && realEstatePortfolio.isEmpty()) {
+            System.out.println("You have no assets in your portfolio.");
+            return;
+        }
+
+        ArrayList<Assets> stockAssets = new ArrayList<>(stocks); 
+        assets.add(stockAssets);
+
+        ArrayList<Assets> realEstateAssets = new ArrayList<>(realEstatePortfolio);
+        assets.add(realEstateAssets);
+
+        for (ArrayList<Assets> assetList : assets) {
+            for (Assets asset : assetList) {
+                System.out.println(asset);
+            }
+        }
+    }
+
 }
