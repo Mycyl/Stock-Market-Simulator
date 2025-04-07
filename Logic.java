@@ -20,7 +20,7 @@ public class Logic {
 
             printMenu();
             response = scan.nextLine();
-            if (response.equals("5")) {
+            if (response.equals("6")) {
                 break;
             }
 
@@ -36,14 +36,51 @@ public class Logic {
                 
             } else if (response.equals("3")) {
                 // Add real estate logic here
+                RealEstate realEstate = constructRealEstateObj();
+                person.addRealEstate(realEstate);
+                System.out.println("You have added " + realEstate.getName().toUpperCase() + " to your portfolio.");
+
             } else if (response.equals("4")) {
                 // View real estate portfolio logic here
-            } else {
+                person.viewRealEstatePortfolio(scan);
+
+            } else if (response.equals("5")){
+
+                
+
+            }else {
                 System.out.println("Invalid choice. Please try again.");
             }
 
             System.out.println();
         }
+    }
+
+    public RealEstate constructRealEstateObj () {
+        System.out.print("Please enter the name of the real estate: ");
+        String name = scan.nextLine();
+        System.out.print("Please enter the cost of the real estate: ");
+        double cost = scan.nextDouble();
+        scan.nextLine(); // Consume the newline character
+        System.out.print("Please enter the city of the real estate: ");
+        String city = scan.nextLine();
+        System.out.print("Please enter the state of the real estate: ");
+        String state = scan.nextLine();
+        System.out.print("Please enter the realtor of the real estate: ");
+        String realtor = scan.nextLine();
+        System.out.print("Please enter the square feet of the real estate: ");
+        int squareFeet = scan.nextInt();
+        scan.nextLine(); // Consume the newline character
+        System.out.print("Please enter the number of bedrooms: ");
+        String bedrooms = scan.nextLine();
+        System.out.print("Please enter the number of bathrooms: ");
+        String bathrooms = scan.nextLine();
+        System.out.print("Please enter the year built: ");
+        int yearBuilt = scan.nextInt();
+        scan.nextLine(); // Consume the newline character
+        System.out.print("Please enter the property type: ");
+        String propertyType = scan.nextLine();
+        return new RealEstate(cost, name, city, state, realtor, squareFeet, bedrooms, bathrooms, yearBuilt, propertyType);
     }
 
     public void printMenu () {

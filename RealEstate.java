@@ -1,4 +1,5 @@
 public class RealEstate extends Assets{
+    
     private String city;
     private String realtor;
     private String state;

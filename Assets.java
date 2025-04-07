@@ -19,10 +19,12 @@ public class Assets{
     }
 
     public String toString () {
+        String typeOfAsset = this.getClass().getSimpleName();
+
         String str = "";
-        str += "=====================================";
-        str += "\n" + name.toUpperCase() + " ASSET";
-        str += "\nCost: $" + cost;
+        str += "===========================================";
+        str += "\n" + name.toUpperCase() + " is a " + typeOfAsset + " that costs $" + cost;
+        str += "===========================================";
         return str;
     }
 
