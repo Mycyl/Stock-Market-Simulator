@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
 public class Stock extends Assets{
 
     private double change;
@@ -52,14 +55,16 @@ public class Stock extends Assets{
     @Override
     public String toString () {
         String str = "";
-        str += "Change: $" + change;
+        str += "=====================================";
+        str += "\n" + getName().toUpperCase() + " STOCK";
+        str += "\nChange: $" + change;
         str += "\nPercent Change: $" + percentChange;
         str += "\nHigh Price: $" + highPrice;
         str += "\nLow Price: $" + lowPrice;
         str += "\nOpen Price of the day: $" + openPrice;
         str += "\nPrevious close price: $" + previousClosePrice;
+        str += "\n=====================================";
         return str;
     }
-
 
 }

@@ -5,11 +5,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
 
 public class Parse {
 
@@ -17,8 +15,24 @@ public class Parse {
 
     private static Map<String, String> stockCodes = new HashMap<String, String>(
         Map.ofEntries(
-            Map.entry("Apple", "AAPL"),
-            Map.entry("NVIDIA", "NVDA") // add onto this
+            Map.entry("apple", "AAPL"),
+            Map.entry("nvidia", "NVDA"),
+            Map.entry("microsoft", "MSFT"),
+            Map.entry("tesla", "TSLA"),
+            Map.entry("amazon", "AMZN"),
+            Map.entry("google", "GOOGL"),
+            Map.entry("facebook", "FB"),
+            Map.entry("netflix", "NFLX"),
+            Map.entry("ford", "F"),
+            Map.entry("general motors", "GM"),
+            Map.entry("ibm", "IBM"),
+            Map.entry("intel", "INTC"),
+            Map.entry("oracle", "ORCL"),
+            Map.entry("qualcomm", "QCOM"),
+            Map.entry("twitter", "TWTR"),
+            Map.entry("uber", "UBER"),
+            Map.entry("lyft", "LYFT"),
+            Map.entry("zoom", "ZM")
         )
     );
 
@@ -50,7 +64,6 @@ public class Parse {
         String queryParameters = "&token=" + getApiKey();
         String endPoint = "quote?symbol=" + stockCode; // get endpoint
         String url = "https://finnhub.io/api/v1/" + endPoint + queryParameters;
-        System.out.println(url);
         try {
             URI myUri = URI.create(url); // creates a URI object from the url string
             HttpRequest request = HttpRequest.newBuilder().uri(myUri).build();
@@ -64,7 +77,7 @@ public class Parse {
     }
 
     public static double[] parseResponseData (String stockName) {
-        String stockCode = stockCodes.get(stockName);
+        String stockCode = stockCodes.get(stockName.toLowerCase());
         String responseBody = buildUrlResponse(stockCode);
         JSONObject jsonObj = new JSONObject(responseBody);
         double c = jsonObj.getDouble("c");
