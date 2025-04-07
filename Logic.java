@@ -16,10 +16,11 @@ public class Logic {
         Person person = new Person(scan.nextLine());
         System.out.println("Hello " + person.getName() + "!");
         String response = "";
-        while (!response.equals("5")) {
+        while (!response.equals("6")) {
 
             printMenu();
             response = scan.nextLine();
+            
             if (response.equals("6")) {
                 break;
             }
